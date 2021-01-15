@@ -7,7 +7,7 @@ const model = require("./dbConnect");
 
 let dirPath = "./assets";
 
-router.post("/addPost", upload.single("file"), (req, res) => {
+router.post("/post", upload.single("file"), (req, res) => {
   model.find((err, posts) => {
     if (err) return err;
     let id = posts.length;
@@ -21,7 +21,7 @@ router.post("/addPost", upload.single("file"), (req, res) => {
   });
 });
 
-router.get("/getPost", (req, res) => {
+router.get("/post", (req, res) => {
   fs.readdir(dirPath, (err, files) => {
     if (err) {
       return callback(err);
@@ -30,7 +30,7 @@ router.get("/getPost", (req, res) => {
     let filePaths = [];
 
     async.eachOf(files, (fileName, key) => {
-      let filePath = path.join("getPost", fileName);
+      let filePath = path.join("post", fileName);
       filePaths.push({ id: key, url: filePath });
     });
 

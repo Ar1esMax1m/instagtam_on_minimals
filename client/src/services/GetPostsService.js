@@ -1,7 +1,7 @@
 class GetPostsService {
   static getPosts() {
     return new Promise((resolve, reject) => {
-      fetch("/getPost", {
+      fetch("/post", {
         method: "GET",
       })
         .then((response) => {

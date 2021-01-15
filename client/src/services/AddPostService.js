@@ -1,7 +1,7 @@
 class AddPostService{
   static addPost(formData){
     return new Promise((resolve, reject) =>{
-      fetch("/addPost", {
+      fetch("/post", {
         method: "POST",
         body: formData,
       })
