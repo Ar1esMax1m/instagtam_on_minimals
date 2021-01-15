@@ -7,7 +7,12 @@
 <script>
 import ListPostItem from "@/components/ListPostItem";
 export default {
-  props: ["posts"],
+  props: {
+    posts:{
+      type: Array,
+      required: true
+    }
+  },
   components: {
     ListPostItem,
   },

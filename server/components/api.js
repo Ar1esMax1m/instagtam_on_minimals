@@ -49,8 +49,8 @@ router.get("/post/:postid", (req, res) => {
       for (let i = 0; i < files.length; i++) {
         let id = i;
         let filePath = files[i];
-        let des = await model.findOne({ id: i }, "title").exec();
-        filePaths.push({ id: id, url: filePath, des: des.title });
+        let description = await model.findOne({ id: i }, "title").exec();
+        filePaths.push({ id: id, url: filePath, description: description.title });
       }
 
       for (let i = 0; i < filePaths.length; i++) {

@@ -4,6 +4,8 @@
 
 <script>
 import ListPost from "@/components/ListPost";
+import GetPostsService from "@/services/GetPostsService";
+
 export default {
   data() {
     return {
@@ -13,17 +15,14 @@ export default {
   components: {
     ListPost,
   },
-  mounted() {
-    fetch("/getPost", {
-      method: "GET",
-    })
-      .then((res) => {
-        res.json().then( (posts) => {this.posts = posts} )
-        console.log(this.posts)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  async mounted() {
+    try {
+      this.posts = await GetPostsService.getPosts();
+    } catch (e) {
+      if (e.response.status === 400) {
+        console.error("Ошибка получение постов");
+      }
+    }
   },
 };
 </script>

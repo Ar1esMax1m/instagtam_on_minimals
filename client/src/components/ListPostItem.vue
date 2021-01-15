@@ -1,5 +1,5 @@
 <template>
-  <v-col class="post col-4"
+  <v-col class="post col-4 pa-1"
     ><router-link :to="buildUrl(post.id)"
       ><v-img
         :src="post.url"
@@ -24,9 +24,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.post {
-  padding: 2.5px;
-}
-</style>

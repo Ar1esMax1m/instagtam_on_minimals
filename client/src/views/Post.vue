@@ -1,20 +1,16 @@
 <template>
   <v-container>
     <v-img :src="this.post.url"></v-img>
-    <p>{{ this.post.des }}</p>
+    <p>{{ this.post.description }}</p>
   </v-container>
 </template>
 
 <script>
+import GetPostService from "@/services/GetPostService"
 export default {
-  created: function() {
-    fetch(`/post/${this.$route.params.id}`, {
-      method: "GET",
-    })
-      .then((res) => {
-        res.json().then((post) => (this.post = post));
-      })
-      .catch((err) => console.log(err));
+  async created() {
+    let post = await GetPostService.getPost(this.$route.params.id);
+    this.post = post
   },
   data() {
     return {

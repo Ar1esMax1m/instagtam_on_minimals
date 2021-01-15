@@ -7,18 +7,21 @@
 </template>
 
 <script>
+import AddPostService from '@/services/AddPostService';
+
 export default {
   methods: {
-    onSubmit() {
-      let form = document.getElementById('form')
-      let formData = new FormData(form)
+    async onSubmit() {
+      let form = document.getElementById('form');
+      let formData = new FormData(form);
 
-      fetch("/addPost", {
-        method: "POST",
-        body: formData,
-      })
-        .then((res) => console.log(res))
-        .catch((error) => console.error(error));
+      try{
+        await AddPostService.addPost(formData);
+      } catch(e){
+        if(e.response.status === 400){
+          console.error('Error - повторите попытку')
+        }
+      }
     },
   },
 };
