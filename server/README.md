@@ -4,7 +4,7 @@
 
 ```
 Install MongoDB on PC and correct dbConnect.js
-Delete files from server/assets/
+Create directory 'assets' in server/
 ```
 
 ### Server start
