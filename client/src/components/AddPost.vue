@@ -1,7 +1,7 @@
 <template>
   <v-form @submit.prevent="onSubmit" id="form">
     <v-file-input type="file" name="file" placeholder="Файл" />
-    <v-text-field filled type="text" name="des" placeholder="Описание"/>
+    <v-text-field filled type="text" name="description" placeholder="Описание"/>
     <v-btn type="submit" color="success" elevation="2">Добавить</v-btn>
   </v-form>
 </template>

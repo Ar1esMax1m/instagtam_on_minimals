@@ -12,7 +12,7 @@ let Schema = mongoose.Schema;
 
 let SomeModelSchema = new Schema({
   id: Number,
-  title: String,
+  description: String,
 });
 
 let model = mongoose.model("Posts", SomeModelSchema);

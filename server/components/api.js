@@ -5,20 +5,21 @@ const path = require("path");
 const async = require("async");
 const model = require("./dbConnect");
 
-router.post("/addPost", upload.single("file"), (req, res, next) => {
+let dirPath = "./assets";
+
+router.post("/addPost", upload.single("file"), (req, res) => {
   model.find((err, posts) => {
     if (err) return err;
     let id = posts.length;
 
-    let post = new model({ id: id, title: req.body.des });
+    let post = new model({ id: id, description: req.body.description });
+
     post.save((err) => {
       if (err) return handleError(err);
       res.sendStatus(200);
     });
   });
 });
-
-let dirPath = "./assets";
 
 router.get("/getPost", (req, res) => {
   fs.readdir(dirPath, (err, files) => {
@@ -49,8 +50,8 @@ router.get("/post/:postid", (req, res) => {
       for (let i = 0; i < files.length; i++) {
         let id = i;
         let filePath = files[i];
-        let description = await model.findOne({ id: i }, "title").exec();
-        filePaths.push({ id: id, url: filePath, description: description.title });
+        let post = await model.findOne({ id: i }, "description").exec();
+        filePaths.push({ id: id, url: filePath, description: post.description });
       }
 
       for (let i = 0; i < filePaths.length; i++) {
